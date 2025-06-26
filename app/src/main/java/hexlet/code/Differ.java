@@ -7,14 +7,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.Map;
+import java.util.TreeSet;
+import java.util.Set;
+import java.util.LinkedHashMap;
 
 public class Differ {
 
-    public static final ObjectMapper objectMapper = new ObjectMapper();
+    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     public static Map<String, Object> parseToMap(String content) throws JsonProcessingException {
-        return objectMapper.readValue(content, new TypeReference<Map<String,Object>>(){});
+        return OBJECT_MAPPER.readValue(content, new TypeReference<Map<String, Object>>() { });
     }
 
     public static String readFile(String filepath) throws Exception {
@@ -37,7 +40,7 @@ public class Differ {
         return content;
     }
 
-    public static Map<String, Object> getDiffMap(Map<String, Object>map1, Map<String, Object> map2) {
+    public static Map<String, Object> getDiffMap(Map<String, Object> map1, Map<String, Object> map2) {
         Set<String> keys = new TreeSet<>(map1.keySet());
         keys.addAll(map2.keySet());
         Map<String, Object> result = new LinkedHashMap<>();
@@ -50,7 +53,7 @@ public class Differ {
                 result.put("+ " + key, value2);
             } else if (!map2.containsKey(key)) {
                 result.put("- " + key, value1);
-            } else if (value1.equals(value2)){
+            } else if (value1.equals(value2)) {
                 result.put("  " + key, value1);
             } else {
                 result.put("- " + key, value1);

@@ -1,5 +1,10 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/yas-7/java-project-71/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/yas-7/java-project-71/actions)
+[![Java CI with Gradle](https://github.com/yas-7/java-project-71/actions/workflows/main.yml/badge.svg)](https://github.com/yas-7/java-project-71/actions/workflows/main.yml)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=yas-7_java-project-71&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=yas-7_java-project-71)
+
+[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=yas-7_java-project-71)
 
 
 ## JSON Diff
