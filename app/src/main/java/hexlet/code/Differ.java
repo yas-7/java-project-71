@@ -32,12 +32,7 @@ public class Differ {
         }
 
         // Читаем файл
-        String content = Files.readString(path);
-
-        // Выводим содержимое
-        System.out.println(content);
-
-        return content;
+        return Files.readString(path);
     }
 
     public static Map<String, Object> getDiffMap(Map<String, Object> map1, Map<String, Object> map2) {
