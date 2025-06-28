@@ -1,39 +1,11 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Map;
 import java.util.TreeSet;
 import java.util.Set;
 import java.util.LinkedHashMap;
 
 public class Differ {
-
-    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-
-    public static Map<String, Object> parseToMap(String content) throws JsonProcessingException {
-        return OBJECT_MAPPER.readValue(content, new TypeReference<Map<String, Object>>() { });
-    }
-
-    public static String readFile(String filepath) throws Exception {
-        // Формируем абсолютный путь,
-        // если filePath будет содержать относительный путь,
-        // то мы всегда будет работать с абсолютным
-        Path path = Paths.get(filepath).toAbsolutePath().normalize();
-
-        // Проверяем существование файла
-        if (!Files.exists(path)) {
-            throw new Exception("File '" + path + "' does not exist");
-        }
-
-        // Читаем файл
-        return Files.readString(path);
-    }
 
     public static Map<String, Object> getDiffMap(Map<String, Object> map1, Map<String, Object> map2) {
         Set<String> keys = new TreeSet<>(map1.keySet());
@@ -76,12 +48,11 @@ public class Differ {
         return str.toString();
     }
 
-
-    public static String generate(String filepath1, String filepath2) throws Exception {
-        String content1 = readFile(filepath1);
-        String content2 = readFile(filepath2);
-        Map<String, Object> map1 = parseToMap(content1);
-        Map<String, Object> map2 = parseToMap(content2);
+    public static String generate(String filepath1, String filepath2) {
+        Parser parser1 = new Parser(filepath1);
+        Parser parser2 = new Parser(filepath2);
+        Map<String, Object> map1 = parser1.parseToMap();
+        Map<String, Object> map2 = parser2.parseToMap();
         Map<String, Object> diffMap = getDiffMap(map1, map2);
 
         return generateDiffString(diffMap);
