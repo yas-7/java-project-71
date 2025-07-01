@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.formatters.Formatter;
+
 import java.util.Map;
 import java.util.TreeSet;
 import java.util.Set;
@@ -33,7 +35,8 @@ public class Differ {
     }
 
     public static String generateDiffString(List<DiffRecord> diffRecordList, String format) {
-        return Formatter.renderDiff(diffRecordList, format);
+        Formatter formatter = FormatterUtils.getFormatter(format);
+        return formatter.renderDiff(diffRecordList);
     }
 
     public static String generate(String filepath1, String filepath2, String format) {

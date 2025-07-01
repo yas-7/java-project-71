@@ -1,21 +1,15 @@
-package hexlet.code;
+package hexlet.code.formatters;
+
+import hexlet.code.DiffRecord;
 
 import java.util.List;
 
-public class Formatter {
+public class StylishFormatter implements Formatter {
 
-    public static String renderDiff(List<DiffRecord> diffRecords, String format) {
-        if (format.equalsIgnoreCase("stylish")) {
-            return renderStylishDiff(diffRecords);
-        }
-
-        throw new IllegalArgumentException("no render method for " + format + " format");
-    }
-
-    private static String renderStylishDiff(List<DiffRecord> diffRecords) {
+    public String renderDiff(List<DiffRecord> diffRecordList) {
         StringBuilder str = new StringBuilder("{\n");
 
-        for (DiffRecord element : diffRecords) {
+        for (DiffRecord element : diffRecordList) {
             str.append(renderDiffString(element));
         }
 
@@ -24,7 +18,7 @@ public class Formatter {
         return str.toString();
     }
 
-    private static String renderDiffString(DiffRecord element) {
+    private String renderDiffString(DiffRecord element) {
         String key = element.getKey();
         String status = element.getStatus();
         Object oldValue = element.getOldValue();
@@ -38,7 +32,7 @@ public class Formatter {
         };
     }
 
-    private static String generateLine(String prefix, String key, Object value) {
+    private String generateLine(String prefix, String key, Object value) {
         return " ".repeat(2) + prefix + " " + key + ": " + value + "\n";
     }
 }
