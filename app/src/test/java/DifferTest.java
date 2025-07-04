@@ -1,10 +1,10 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import hexlet.code.Differ;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DifferTest {
 
@@ -66,6 +66,34 @@ class DifferTest {
         String filepath1 = "src/test/resources/fixtures/file1." + ext;
         String filepath2 = "src/test/resources/fixtures/file2." + ext;
         String actual = Differ.generate(filepath1, filepath2, "plain");
+
+        assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yaml"})
+    void jsonDiff(String ext) {
+        String expected = "[{\"key\":\"chars1\",\"status\":\"unchanged\",\"oldValue\":[\"a\",\"b\",\"c\"],"
+                          + "\"newValue\":[\"a\",\"b\",\"c\"]},{\"key\":\"chars2\",\"status\":\"changed\",\"oldValue\":"
+                          + "[\"d\",\"e\",\"f\"],\"newValue\":false},{\"key\":\"checked\",\"status\":\"changed\","
+                          + "\"oldValue\":false,\"newValue\":true},{\"key\":\"default\",\"status\":\"changed\","
+                          + "\"oldValue\":null,\"newValue\":[\"value1\",\"value2\"]},{\"key\":\"id\",\"status\":"
+                          + "\"changed\",\"oldValue\":45,\"newValue\":null},{\"key\":\"key1\",\"status\":\"removed\","
+                          + "\"oldValue\":\"value1\",\"newValue\":null},{\"key\":\"key2\",\"status\":\"added\","
+                          + "\"oldValue\":null,\"newValue\":\"value2\"},{\"key\":\"numbers1\",\"status\":\"unchanged\","
+                          + "\"oldValue\":[1,2,3,4],\"newValue\":[1,2,3,4]},{\"key\":\"numbers2\",\"status\":"
+                          + "\"changed\",\"oldValue\":[2,3,4,5],\"newValue\":[22,33,44,55]},{\"key\":\"numbers3\","
+                          + "\"status\":\"removed\",\"oldValue\":[3,4,5],\"newValue\":null},{\"key\":\"numbers4\","
+                          + "\"status\":\"added\",\"oldValue\":null,\"newValue\":[4,5,6]},{\"key\":\"obj1\",\"status\":"
+                          + "\"added\",\"oldValue\":null,\"newValue\":{\"nestedKey\":\"value\",\"isNested\":true}},"
+                          + "{\"key\":\"setting1\",\"status\":\"changed\",\"oldValue\":\"Some value\",\"newValue\":"
+                          + "\"Another value\"},{\"key\":\"setting2\",\"status\":\"changed\",\"oldValue\":200,"
+                          + "\"newValue\":300},{\"key\":\"setting3\",\"status\":\"changed\",\"oldValue\":true,"
+                          + "\"newValue\":\"none\"}]";
+
+        String filepath1 = "src/test/resources/fixtures/file1." + ext;
+        String filepath2 = "src/test/resources/fixtures/file2." + ext;
+        String actual = Differ.generate(filepath1, filepath2, "json");
 
         assertEquals(expected, actual);
     }

@@ -15,7 +15,7 @@ public class Parser {
     private final String extension;
     private final String filepath;
 
-    private static final ObjectMapper OBJECT_JSON_MAPPER = new ObjectMapper();
+    public static final ObjectMapper OBJECT_JSON_MAPPER = new ObjectMapper();
     private static final ObjectMapper OBJECT_YAML_MAPPER = new YAMLMapper();
 
     public Parser(String filepath) {

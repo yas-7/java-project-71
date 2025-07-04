@@ -6,6 +6,7 @@ import java.util.List;
 
 public class StylishFormatter implements Formatter {
 
+    @Override
     public String renderDiff(List<DiffRecord> diffRecordList) {
         StringBuilder str = new StringBuilder("{\n");
 

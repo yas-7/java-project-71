@@ -10,7 +10,7 @@
 
 
 ## JSON Diff
-[![asciicast](https://asciinema.org/a/1ipd2h52CSMK12EeYS98z6Fz5.svg)](https://asciinema.org/a/1ipd2h52CSMK12EeYS98z6Fz5)
+[![asciicast](https://asciinema.org/a/ZtWoCdBrJZB2nV9H4TH3ALtYV.svg)](https://asciinema.org/a/ZtWoCdBrJZB2nV9H4TH3ALtYV)
 
 
 ## YAML Diff
