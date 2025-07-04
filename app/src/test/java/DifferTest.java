@@ -41,8 +41,11 @@ class DifferTest {
         String filepath1 = "src/test/resources/fixtures/file1." + ext;
         String filepath2 = "src/test/resources/fixtures/file2." + ext;
         String actual = Differ.generate(filepath1, filepath2, "stylish");
+        String actualNoFormat = Differ.generate(filepath1, filepath2);
 
         assertEquals(expected, actual);
+        assertEquals(expected, actualNoFormat);
+
     }
 
     @ParameterizedTest

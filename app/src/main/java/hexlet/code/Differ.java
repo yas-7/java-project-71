@@ -39,6 +39,10 @@ public class Differ {
         return formatter.renderDiff(diffRecordList);
     }
 
+    public static String generate(String filepath1, String filepath2) {
+        return generate(filepath1, filepath2, "stylish");
+    }
+
     public static String generate(String filepath1, String filepath2, String format) {
         Parser parser1 = new Parser(filepath1);
         Parser parser2 = new Parser(filepath2);
