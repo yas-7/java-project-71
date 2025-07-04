@@ -36,7 +36,7 @@ public class Parser {
     }
 
     private ObjectMapper getMapperObject() {
-        if (extension.equalsIgnoreCase("yaml")) {
+        if (extension.equalsIgnoreCase("yaml") || extension.equalsIgnoreCase("yml")) {
             return OBJECT_YAML_MAPPER;
         } else if (extension.equalsIgnoreCase("json")) {
             return OBJECT_JSON_MAPPER;

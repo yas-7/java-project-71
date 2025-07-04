@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class DifferTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"json", "yaml"})
+    @ValueSource(strings = {"json", "yaml", "yml"})
     void stylishDiff(String ext) {
         String expected = """
                 {
@@ -49,7 +49,7 @@ class DifferTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"json", "yaml"})
+    @ValueSource(strings = {"json", "yaml", "yml"})
     void plainDiff(String ext) {
         String expected = """
                 Property 'chars2' was updated. From [complex value] to false
@@ -74,7 +74,7 @@ class DifferTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"json", "yaml"})
+    @ValueSource(strings = {"json", "yaml", "yml"})
     void jsonDiff(String ext) {
         String expected = "[{\"key\":\"chars1\",\"status\":\"unchanged\",\"oldValue\":[\"a\",\"b\",\"c\"],"
                           + "\"newValue\":[\"a\",\"b\",\"c\"]},{\"key\":\"chars2\",\"status\":\"changed\",\"oldValue\":"
