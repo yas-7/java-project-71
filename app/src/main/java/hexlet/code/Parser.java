@@ -11,7 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
-public class Parser {
+public final class Parser {
     private final String extension;
     private final String filepath;
 

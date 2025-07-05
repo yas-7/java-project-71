@@ -6,6 +6,11 @@ import java.util.List;
 
 public class StylishFormatter implements Formatter {
 
+    /**
+     * Формирует стильное текстовое представление различий между двумя конфигурациями.
+     * @param diffRecordList список записей различий
+     * @return строку, представляющую разницу в визуальном стиле
+     */
     @Override
     public String renderDiff(List<DiffRecord> diffRecordList) {
         StringBuilder str = new StringBuilder("{\n");
@@ -20,10 +25,10 @@ public class StylishFormatter implements Formatter {
     }
 
     private String renderDiffString(DiffRecord element) {
-        String key = element.getKey();
-        String status = element.getStatus();
-        Object oldValue = element.getOldValue();
-        Object newValue = element.getNewValue();
+        String key = element.key();
+        String status = element.status();
+        Object oldValue = element.oldValue();
+        Object newValue = element.newValue();
 
         return switch (status) {
             case "added" -> generateLine("+", key, newValue);

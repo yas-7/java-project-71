@@ -9,6 +9,11 @@ import static hexlet.code.Parser.OBJECT_JSON_MAPPER;
 
 public class JsonFormatter implements Formatter {
 
+    /**
+     * Генерирует JSON-представление списка записей различия.
+     * @param diffRecordList список объектов типа DiffRecord
+     * @return строку в формате JSON
+     */
     @Override
     public String renderDiff(List<DiffRecord> diffRecordList) {
         try {

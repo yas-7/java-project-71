@@ -6,6 +6,11 @@ import java.util.List;
 
 public class PlainFormatter implements Formatter {
 
+    /**
+     * Формирует простую текстовую версию представления различий между двумя конфигурациями.
+     * @param diffRecordList список записей различий
+     * @return строку, представляющую отличия в удобочитаемом виде
+     */
     @Override
     public String renderDiff(List<DiffRecord> diffRecordList) {
         StringBuilder str = new StringBuilder();
@@ -18,10 +23,10 @@ public class PlainFormatter implements Formatter {
     }
 
     private String renderDiffString(DiffRecord element) {
-        String key = element.getKey();
-        String status = element.getStatus();
-        Object oldValue = getValueRepresentation(element.getOldValue());
-        Object newValue = getValueRepresentation(element.getNewValue());
+        String key = element.key();
+        String status = element.status();
+        Object oldValue = getValueRepresentation(element.oldValue());
+        Object newValue = getValueRepresentation(element.newValue());
 
         return switch (status) {
             case "added" -> String.format("Property '%s' was added with value: %s\n", key, newValue);
