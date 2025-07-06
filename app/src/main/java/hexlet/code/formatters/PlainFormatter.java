@@ -1,6 +1,8 @@
 package hexlet.code.formatters;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import hexlet.code.DiffRecord;
+import hexlet.code.Parser;
 
 import java.util.List;
 
@@ -29,22 +31,28 @@ public class PlainFormatter implements Formatter {
         Object newValue = getValueRepresentation(element.newValue());
 
         return switch (status) {
-            case "added" -> String.format("Property '%s' was added with value: %s\n", key, newValue);
-            case "removed" -> String.format("Property '%s' was removed\n", key);
-            case "changed" -> String.format("Property '%s' was updated. From %s to %s\n", key, oldValue, newValue);
+            case "added" -> String.format("Property '%s' was added with value: %s%n", key, newValue);
+            case "removed" -> String.format("Property '%s' was removed%n", key);
+            case "changed" -> String.format("Property '%s' was updated. From %s to %s%n", key, oldValue, newValue);
             default -> "";
         };
     }
 
     private Object getValueRepresentation(Object value) {
-        if (value == null || value instanceof Number || value instanceof Boolean || value instanceof Character) {
-            return value;
+        if (value == null) {
+            return null;
         }
 
-        if (value instanceof CharSequence) {
+        JsonNode node = Parser.OBJECT_JSON_MAPPER.valueToTree(value);
+
+        if (node.isArray() || node.isObject()) {
+            return "[complex value]";
+        }
+
+        if (node.isTextual()) {
             return String.format("'%s'", value);
         }
 
-        return "[complex value]";
+        return value;
     }
 }
