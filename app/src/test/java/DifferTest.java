@@ -41,7 +41,7 @@ class DifferTest {
 
         String filepath1 = "src/test/resources/fixtures/file1." + ext;
         String filepath2 = "src/test/resources/fixtures/file2." + ext;
-        String actual = Differ.generate(filepath1, filepath2, FormatType.STYLISH);
+        String actual = Differ.generate(filepath1, filepath2, FormatType.STYLISH.toString());
         String actualNoFormat = Differ.generate(filepath1, filepath2);
 
         assertEquals(expected, actual);
@@ -69,7 +69,7 @@ class DifferTest {
 
         String filepath1 = "src/test/resources/fixtures/file1." + ext;
         String filepath2 = "src/test/resources/fixtures/file2." + ext;
-        String actual = Differ.generate(filepath1, filepath2, FormatType.PLAIN);
+        String actual = Differ.generate(filepath1, filepath2, FormatType.PLAIN.toString());
 
         assertEquals(expected, actual);
     }
@@ -97,7 +97,7 @@ class DifferTest {
 
         String filepath1 = "src/test/resources/fixtures/file1." + ext;
         String filepath2 = "src/test/resources/fixtures/file2." + ext;
-        String actual = Differ.generate(filepath1, filepath2, FormatType.JSON);
+        String actual = Differ.generate(filepath1, filepath2, FormatType.JSON.toString());
 
         assertEquals(expected, actual);
     }
@@ -108,7 +108,7 @@ class DifferTest {
         String filepath2 = "src/test/resources/fixtures/file2.json";
 
         assertThrows(IllegalArgumentException.class,
-                () -> Differ.generate(filepath1, filepath2, FormatType.valueOf("nonexistent")));
+                () -> Differ.generate(filepath1, filepath2, "nonexistent"));
     }
 }
 

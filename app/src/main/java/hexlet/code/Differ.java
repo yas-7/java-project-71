@@ -17,17 +17,17 @@ import static hexlet.code.Status.UNCHANGED;
 public class Differ {
 
     public static String generate(String filepath1, String filepath2) {
-        return generate(filepath1, filepath2, FormatType.STYLISH);
+        return generate(filepath1, filepath2, FormatType.STYLISH.toString());
     }
 
-    public static String generate(String filepath1, String filepath2, FormatType format) {
+    public static String generate(String filepath1, String filepath2, String format) {
         Parser parser1 = new Parser(filepath1);
         Parser parser2 = new Parser(filepath2);
         Map<String, Object> map1 = parser1.parseToMap();
         Map<String, Object> map2 = parser2.parseToMap();
         List<DiffRecord> diffRecordList = getDiffRecordList(map1, map2);
 
-        return generateDiffString(diffRecordList, format);
+        return generateDiffString(diffRecordList, FormatType.valueFromString(format));
     }
 
     private static List<DiffRecord> getDiffRecordList(Map<String, Object> map1, Map<String, Object> map2) {
