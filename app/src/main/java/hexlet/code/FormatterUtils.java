@@ -7,15 +7,11 @@ import hexlet.code.formatters.StylishFormatter;
 
 public class FormatterUtils {
 
-    public static Formatter getFormatter(String format) {
-        if (format.equalsIgnoreCase("stylish")) {
-            return new StylishFormatter();
-        } else if (format.equalsIgnoreCase("plain")) {
-            return new PlainFormatter();
-        } else if (format.equalsIgnoreCase("json")) {
-            return new JsonFormatter();
-        }
-
-        throw new IllegalArgumentException("no render method for " + format + " format");
+    public static Formatter getFormatter(FormatType format) {
+        return switch (format) {
+            case STYLISH -> new StylishFormatter();
+            case PLAIN -> new PlainFormatter();
+            case JSON -> new JsonFormatter();
+        };
     }
 }

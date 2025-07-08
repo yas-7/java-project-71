@@ -1,6 +1,7 @@
 package hexlet.code.formatters;
 
 import hexlet.code.DiffRecord;
+import hexlet.code.Status;
 
 import java.util.List;
 
@@ -26,14 +27,14 @@ public class StylishFormatter implements Formatter {
 
     private String renderDiffString(DiffRecord element) {
         String key = element.key();
-        String status = element.status();
+        Status status = element.status();
         Object oldValue = element.oldValue();
         Object newValue = element.newValue();
 
         return switch (status) {
-            case "added" -> generateLine("+", key, newValue);
-            case "removed" -> generateLine("-", key, oldValue);
-            case "changed" -> generateLine("-", key, oldValue) + generateLine("+", key, newValue);
+            case ADDED -> generateLine("+", key, newValue);
+            case REMOVED -> generateLine("-", key, oldValue);
+            case CHANGED -> generateLine("-", key, oldValue) + generateLine("+", key, newValue);
             default -> generateLine(" ", key, oldValue);
         };
     }

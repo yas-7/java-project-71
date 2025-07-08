@@ -3,6 +3,7 @@ package hexlet.code.formatters;
 import com.fasterxml.jackson.databind.JsonNode;
 import hexlet.code.DiffRecord;
 import hexlet.code.Parser;
+import hexlet.code.Status;
 
 import java.util.List;
 
@@ -26,14 +27,14 @@ public class PlainFormatter implements Formatter {
 
     private String renderDiffString(DiffRecord element) {
         String key = element.key();
-        String status = element.status();
+        Status status = element.status();
         Object oldValue = getValueRepresentation(element.oldValue());
         Object newValue = getValueRepresentation(element.newValue());
 
         return switch (status) {
-            case "added" -> String.format("Property '%s' was added with value: %s%n", key, newValue);
-            case "removed" -> String.format("Property '%s' was removed%n", key);
-            case "changed" -> String.format("Property '%s' was updated. From %s to %s%n", key, oldValue, newValue);
+            case ADDED -> String.format("Property '%s' was added with value: %s%n", key, newValue);
+            case REMOVED -> String.format("Property '%s' was removed%n", key);
+            case CHANGED -> String.format("Property '%s' was updated. From %s to %s%n", key, oldValue, newValue);
             default -> "";
         };
     }
